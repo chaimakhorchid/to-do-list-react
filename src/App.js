@@ -17,6 +17,7 @@ class App extends Component {
   this.addTask = this.addTask.bind(this);
   this.deleteTask = this.deleteTask.bind(this);
   this.setEditLine = this.setEditLine.bind(this);
+
   }
   
   addTask(task){
@@ -35,12 +36,16 @@ class App extends Component {
 
   }
 
+  modifyTask(index){
+    this.setState({editLine:null})
+  }
+
 
   render() {
     return (
       <div>
         <Form addTask={this.addTask} />
-        <List tasks={this.state.tasks} deleteTask={this.deleteTask} setEditLine={this.setEditLine} editLine={this.state.editLine}/>
+        <List tasks={this.state.tasks} deleteTask={this.deleteTask} setEditLine={this.setEditLine} editLine={this.state.editLine} modifyTask={this.modifyTask}/>
       </div>
     )
   } 

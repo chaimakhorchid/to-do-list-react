@@ -13,7 +13,7 @@ class List extends Component {
                         <label>Description</label>
                         {editLine === index ? (
                             <>
-                            <input value={task.descriptionvalue={this.state.value} onChange={this.handleChange}} onChange={this.modifyTask}></input>
+                            <input value={task.description} onChange={this.modifyTask}></input>
                         <select>
                         <option>To do</option>
                         <option>Doing</option>

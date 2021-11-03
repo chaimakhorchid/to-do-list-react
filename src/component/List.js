@@ -1,8 +1,30 @@
 import React, { Component } from 'react'
 
 class List extends Component {
+    constructor(){
+        super()
+        this.state = {
+            editLine:null,
+            editDescription: ""
+
+        }
+        this.setEditLine = this.setEditLine.bind(this);
+        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    }
+
+    setEditLine(index){
+        this.setState({editLine: index, editDescription: this.props.tasks[index].description})
+    
+      }
+
+    handleDescriptionChange(e){
+        this.setState({ editDescription:e.target.value })
+    }
+
+    
     render() {
-        const {tasks, editLine} = this.props
+        const {tasks} = this.props
+        const editLine = this.state.editLine
         return (
             <div className="container" onSubmit={this.handleSubmit}>
                 <h1>List</h1>
@@ -13,12 +35,13 @@ class List extends Component {
                         <label>Description</label>
                         {editLine === index ? (
                             <>
-                            <input value={task.description} onChange={this.modifyTask}></input>
+                            <input value={this.state.editDescription} onChange={this.handleDescriptionChange}></input>
                         <select>
                         <option>To do</option>
-                        <option>Doing</option>
+                        <option>Doing</option> 
                         <option>Done</option>
                         </select>
+                        <button type="submit" className="btn btn-success mt-4 col-4">Valider</button>
                            </>     
                             ) : (
                             <p>{task.description}</p>
@@ -30,7 +53,7 @@ class List extends Component {
                         </div>
                         <div className="col-4">
                             <button type="submit" className="btn btn-danger mt-4 col-4" onClick={() => this.props.deleteTask(index)}>Supprimer</button>
-                            <button type="submit" className="btn btn-secondary mt-4 col-4" onClick={() => this.props.setEditLine(index)}>Modifier</button>  
+                            <button type="submit" className="btn btn-secondary mt-4 col-4" onClick={() => this.setEditLine(index)}>Modifier</button>  
                         </div>
                         
                         </>

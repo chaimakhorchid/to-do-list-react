@@ -8,15 +8,18 @@ class App extends Component {
     super();
     
     this.state = {
-      tasks: [], 
-      editLine: null
+      tasks: [{
+
+        description: "Allez au cinéma",
+        status: "to do",
+    }], 
     }
 
    
 
   this.addTask = this.addTask.bind(this);
   this.deleteTask = this.deleteTask.bind(this);
-  this.setEditLine = this.setEditLine.bind(this);
+  this.modifyTask = this.modifyTask.bind(this);
 
   }
   
@@ -31,13 +34,9 @@ class App extends Component {
 
   }
   
-  setEditLine(index){
-    this.setState({editLine: index})
+  modifyTask(editLine){
 
-  }
-
-  modifyTask(index){
-    this.setState({editLine:null})
+    
   }
 
 
@@ -45,7 +44,7 @@ class App extends Component {
     return (
       <div>
         <Form addTask={this.addTask} />
-        <List tasks={this.state.tasks} deleteTask={this.deleteTask} setEditLine={this.setEditLine} editLine={this.state.editLine} modifyTask={this.modifyTask}/>
+        <List tasks={this.state.tasks} deleteTask={this.deleteTask} modifyTask={this.modifyTask}/>
       </div>
     )
   } 
